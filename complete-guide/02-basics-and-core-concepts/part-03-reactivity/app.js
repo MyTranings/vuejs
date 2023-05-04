@@ -8,6 +8,14 @@ const app = Vue.createApp({
     };
   },
   watch: {
+    counter(value) {
+      if (value > 50) {
+        setTimeout(() => {
+          this.counter = 0;
+        }, 2000)
+        // this.counter = 0;
+      }
+    }
     // name(value) {
     // this.fullname = value === '' ? value : value + ' ' + this.lastName;
     // },
