@@ -5,9 +5,16 @@ const app = Vue.createApp({
       name: ''
     };
   },
+  computed: {
+    fullname() {
+      return this.name === '' ? this.name : this.name + ' ' + 'Georgiev';
+    }
+  },
   methods: {
-    setName(event, lastName) {
-      // this.name = event.target.value + ' ' + lastName;
+    outputFullname() {
+      return this.name === '' ? this.name : this.name + ' ' + 'Georgiev';
+    },
+    setName(event) {
       this.name = event.target.value;
     },
     add(num) {
