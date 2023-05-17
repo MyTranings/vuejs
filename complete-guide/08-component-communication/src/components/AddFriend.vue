@@ -1,11 +1,11 @@
 <template>
   <section>
-    <form @submit="addANewFriend">
+    <form @submit.prevent="submitData">
       <div>
         <input type="text" name="name" placeholder="Name" v-model="name" />
       </div>
       <div>
-        <input type="text" name="phone" placeholder="Phone" v-model="phone" />
+        <input type="tel" name="phone" placeholder="Phone" v-model="phone" />
       </div>
       <div>
         <input type="email" name="email" placeholder="Email" v-model="email" />
@@ -20,7 +20,7 @@
         />
       </label>
       <div>
-        <button type="submit">Add Friend</button>
+        <button>Add Friend</button>
       </div>
     </form>
   </section>
@@ -38,18 +38,22 @@ export default {
   },
   emits: ["add-new-friend"],
   methods: {
-    addANewFriend(event) {
-      event.preventDefault();
+    submitData() {
+      // Validate Data
+
       const newFriend = {
-        id: this.name.toLowerCase(),
+        id: new Date().toISOString(),
         name: this.name,
         phone: this.phone,
         email: this.email,
         isFavorite: this.isFavorite,
       };
-      console.log(this.isFavorite);
-      // vaidate
+
       this.$emit("add-new-friend", newFriend);
+
+      this.name = "";
+      this.phone = "";
+      this.email = "";
     },
   },
 };
