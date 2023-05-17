@@ -1,7 +1,7 @@
 <template>
   <div class="user">
-    <h2>Name</h2>
-    <h3>Age</h3>
+    <h2>{{ name }}</h2>
+    <h3>{{ age }}</h3>
   </div>
 </template>
 
@@ -29,5 +29,12 @@
 </style>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      name: "Daniel",
+      age: 37,
+    };
+  },
+};
 </script>
