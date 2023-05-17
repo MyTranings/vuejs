@@ -1,9 +1,15 @@
 <template>
   <section>
     <form @submit="addANewFriend">
-      <input type="text" name="name" placeholder="Name" v-model="name" />
-      <input type="text" name="phone" placeholder="Phone" v-model="phone" />
-      <input type="email" name="email" placeholder="Email" v-model="email" />
+      <div>
+        <input type="text" name="name" placeholder="Name" v-model="name" />
+      </div>
+      <div>
+        <input type="text" name="phone" placeholder="Phone" v-model="phone" />
+      </div>
+      <div>
+        <input type="email" name="email" placeholder="Email" v-model="email" />
+      </div>
       <label>
         Is favorite?
         <input
@@ -13,7 +19,9 @@
           v-model="isFavorite"
         />
       </label>
-      <button type="submit">Add Friend</button>
+      <div>
+        <button type="submit">Add Friend</button>
+      </div>
     </form>
   </section>
 </template>
