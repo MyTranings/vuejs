@@ -3,6 +3,7 @@
     <header>
       <h1>My Friends</h1>
     </header>
+    <AddFriend @add-new-friend="addANewFriend"></AddFriend>
     <ul>
       <friend-contact
         v-for="friend in friends"
@@ -88,8 +89,10 @@ header {
 
 <script>
 import FriendContact from "./components/FriendContact.vue";
+import AddFriend from "./components/AddFriend.vue";
+
 export default {
-  components: { FriendContact },
+  components: { FriendContact, AddFriend },
   data() {
     return {
       friends: [
@@ -114,6 +117,9 @@ export default {
     toggleFavoriteStatus(friendId) {
       const friend = this.friends.find((friend) => friend.id === friendId);
       friend.isFavorite = !friend.isFavorite;
+    },
+    addANewFriend(friend) {
+      this.friends.push(friend);
     },
   },
 };
