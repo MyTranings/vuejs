@@ -3,6 +3,14 @@ import App from './App.vue'
 
 const app = createApp(App);
 
+// Another way in registering components
+// 
+// import UserData from './components/UserData.vue';
+// import ActiveUser from './components/ActiveUser.vue';
+
+// app.component('user-data', UserData)
+// app.component('active-user', ActiveUser)
+
 app.mount('#app');
 
 // Task 1: 
