@@ -1,7 +1,7 @@
 <template>
   <div class="users">
-    <user-data></user-data>
-    <active-user></active-user>
+    <user-data @update-user-data="updateData"></user-data>
+    <active-user v-bind="user"></active-user>
   </div>
 </template>
 
@@ -10,6 +10,20 @@ import ActiveUser from "./components/ActiveUser.vue";
 import UserData from "./components/UserData.vue";
 export default {
   components: { UserData, ActiveUser },
+  data() {
+    return {
+      user: {
+        name: "Daniel",
+        age: 37,
+      },
+    };
+  },
+  methods: {
+    updateData(newData) {
+      this.user.name = newData.newName;
+      this.user.age = newData.newAge;
+    },
+  },
 };
 </script>
 

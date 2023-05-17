@@ -1,19 +1,49 @@
 <template>
-  <form @submit.prevent="">
+  <form @submit.prevent="sumbitedData">
     <div>
       <label for="name">Name</label>
-      <input type="text" name="name" id="name" />
+      <input type="text" name="name" id="name" v-model="enteredName" />
     </div>
     <div>
       <label for="age">Age</label>
-      <input type="number" name="age" id="age" />
+      <input type="number" name="age" id="age" v-model="enteredAge" />
     </div>
     <button>Add User</button>
+    <p v-if="!isValid" class="error-message">Fields are required</p>
   </form>
 </template>
 
 <script>
-export default {};
+export default {
+  emits: ["update-user-data"],
+  data() {
+    return {
+      enteredName: "",
+      enteredAge: "",
+      isValid: true,
+    };
+  },
+  methods: {
+    sumbitedData() {
+      if (this.enteredName.length <= 0 || !this.enteredAge) {
+        console.error("Fields are required");
+        this.isValid = false;
+        return false;
+      }
+
+      this.isValid = true;
+      const newUserData = {};
+
+      if (this.enteredName.length > 0) {
+        newUserData.newName = this.enteredName;
+      }
+      if (this.enteredAge) {
+        newUserData.newAge = this.enteredAge;
+      }
+      this.$emit("update-user-data", newUserData);
+    },
+  },
+};
 </script>
 
 <style>
@@ -37,5 +67,8 @@ label {
 }
 form div {
   margin: 1rem 0;
+}
+.error-message {
+  color: red;
 }
 </style>

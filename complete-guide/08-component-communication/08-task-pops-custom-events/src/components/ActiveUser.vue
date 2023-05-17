@@ -30,11 +30,15 @@
 
 <script>
 export default {
-  data() {
-    return {
-      name: "Daniel",
-      age: 37,
-    };
+  props: {
+    name: {
+      type: String,
+      required: true,
+    },
+    age: {
+      type: Number,
+      required: true,
+    },
   },
 };
 </script>
