@@ -1,14 +1,18 @@
 <template>
+  <TheHeader>
+    <h1>RememberMe</h1>
+  </TheHeader>
   <TheResourcesList></TheResourcesList>
 </template>
 
 <style></style>
 
 <script>
+import TheHeader from "./components/TheHeader.vue";
 import TheResourcesList from "./components/TheResourcesList.vue";
 
 export default {
-  components: { TheResourcesList },
+  components: { TheHeader, TheResourcesList },
   data() {
     return {
       storedResources: [
