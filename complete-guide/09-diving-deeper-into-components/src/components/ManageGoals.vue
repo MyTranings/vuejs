@@ -1,16 +1,14 @@
 <template>
-  <div>
-    <h2>Manage Goals</h2>
-    <input type="text" ref="goal" />
-    <button @click="setGoal">Set Goal</button>
-    <teleport to="body">
-      <error-alert v-if="inputIsInvalid">
-        <h2>Error</h2>
-        <p>Enter some text</p>
-        <button @click="confirmError">Ok</button>
-      </error-alert>
-    </teleport>
-  </div>
+  <h2>Manage Goals</h2>
+  <input type="text" ref="goal" />
+  <button @click="setGoal">Set Goal</button>
+  <teleport to="body">
+    <error-alert v-if="inputIsInvalid">
+      <h2>Error</h2>
+      <p>Enter some text</p>
+      <button @click="confirmError">Ok</button>
+    </error-alert>
+  </teleport>
 </template>
 
 <script>
