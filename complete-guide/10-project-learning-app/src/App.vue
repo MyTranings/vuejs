@@ -2,6 +2,7 @@
   <TheHeader>
     <h1>RememberMe</h1>
   </TheHeader>
+  <TheTabs></TheTabs>
   <TheResourcesList></TheResourcesList>
 </template>
 
@@ -9,10 +10,11 @@
 
 <script>
 import TheHeader from "./components/TheHeader.vue";
+import TheTabs from "./components/TheTabs.vue";
 import TheResourcesList from "./components/TheResourcesList.vue";
 
 export default {
-  components: { TheHeader, TheResourcesList },
+  components: { TheHeader, TheTabs, TheResourcesList },
   data() {
     return {
       storedResources: [
