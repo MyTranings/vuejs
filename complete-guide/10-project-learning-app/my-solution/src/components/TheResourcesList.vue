@@ -1,35 +1,26 @@
 <template>
   <ul>
-    <TheResourceCard v-for="resource in storedResources" :key="resource.id">
+    <TheResourceItem v-for="resource in resources" :key="resource.id">
       <h2>{{ resource.title }}</h2>
       <p>{{ resource.description }}</p>
       <a :href="resource.link">View Resource</a>
-    </TheResourceCard>
+    </TheResourceItem>
   </ul>
 </template>
 
 <script>
-import TheResourceCard from "./TheResourceCard.vue";
+import TheResourceItem from "./TheResourceItem.vue";
 
 export default {
-  components: { TheResourceCard },
+  components: { TheResourceItem },
+  props: {
+    resources: {
+      type: Array,
+      required: true,
+    },
+  },
   data() {
-    return {
-      storedResources: [
-        {
-          id: "official-guide",
-          title: "Official Guide",
-          description: "The official documentation",
-          link: "https://vuejs.org",
-        },
-        {
-          id: "google",
-          title: "Google",
-          description: "Learn google",
-          link: "https://google.com",
-        },
-      ],
-    };
+    return {};
   },
 };
 </script>

@@ -1,15 +1,9 @@
 <template>
-  <button>{{ label }}</button>
+  <button>
+    <slot></slot>
+  </button>
 </template>
 
 <script>
-export default {
-  props: {
-    label: {
-      type: String,
-      required: true,
-    },
-  },
-  methods: {},
-};
+export default {};
 </script>

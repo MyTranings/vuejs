@@ -4,7 +4,11 @@
   </TheHeader>
   <TheTabs @change-tabs="setSelectedComponent"></TheTabs>
   <keep-alive>
-    <component :is="selectedComponent"></component>
+    <component
+      :is="selectedComponent"
+      :resources="storedResources"
+      @add-new-resource="addNewResource"
+    ></component>
   </keep-alive>
 </template>
 
@@ -21,11 +25,28 @@ export default {
   data() {
     return {
       selectedComponent: "TheResourcesList",
+      storedResources: [
+        {
+          id: "official-guide",
+          title: "Official Guide",
+          description: "The official documentation",
+          link: "https://vuejs.org",
+        },
+        {
+          id: "google",
+          title: "Google",
+          description: "Learn google",
+          link: "https://google.com",
+        },
+      ],
     };
   },
   methods: {
     setSelectedComponent(cmp) {
       this.selectedComponent = cmp;
+    },
+    addNewResource(resource) {
+      this.storedResources.push(resource);
     },
   },
 };
