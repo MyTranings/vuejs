@@ -2,12 +2,10 @@
   <TheHeader>
     <h1>RememberMe</h1>
   </TheHeader>
-  <TheTabs></TheTabs>
-  <TheResourcesList></TheResourcesList>
-  <TheAddForm></TheAddForm>
-  <!-- <keep-alive> -->
-  <!-- <component is=""></component> -->
-  <!-- </keep-alive> -->
+  <TheTabs @change-tabs="setSelectedComponent"></TheTabs>
+  <keep-alive>
+    <component :is="selectedComponent"></component>
+  </keep-alive>
 </template>
 
 <style></style>
@@ -22,8 +20,13 @@ export default {
   components: { TheHeader, TheTabs, TheResourcesList, TheAddForm },
   data() {
     return {
-      // selectedComponent: "TheResourcesList",
+      selectedComponent: "TheResourcesList",
     };
+  },
+  methods: {
+    setSelectedComponent(cmp) {
+      this.selectedComponent = cmp;
+    },
   },
 };
 </script>
