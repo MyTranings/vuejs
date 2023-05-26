@@ -16,8 +16,8 @@
 <style></style>
 
 <script>
-import TheHeader from "./components/TheHeader.vue";
-import TheTabs from "./components/TheTabs.vue";
+import TheHeader from "./components/ui-elements/TheHeader.vue";
+import TheTabs from "./components/ui-elements/TheTabs.vue";
 import TheResourcesList from "./components/TheResourcesList.vue";
 import TheAddForm from "./components/TheAddForm.vue";
 

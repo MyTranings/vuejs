@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import TheButton from "./TheButton.vue";
+import TheButton from "../base/TheButton.vue";
 
 export default {
   components: { TheButton },

@@ -32,9 +32,9 @@
 </template>
 
 <script>
-import TheField from "./TheField.vue";
-import TheButton from "./TheButton.vue";
-import TheDialog from "./TheDialog.vue";
+import TheField from "./base/TheField.vue";
+import TheButton from "./base/TheButton.vue";
+import TheDialog from "./ui-elements/TheDialog.vue";
 
 export default {
   components: { TheField, TheButton, TheDialog },
