@@ -1,5 +1,5 @@
 <template>
-  <button @click.prevent="buttonClicked">{{ label }}</button>
+  <button>{{ label }}</button>
 </template>
 
 <script>
@@ -10,10 +10,6 @@ export default {
       required: true,
     },
   },
-  methods: {
-    buttonClicked() {
-      this.$emit("button-clicked");
-    },
-  },
+  methods: {},
 };
 </script>

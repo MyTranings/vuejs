@@ -2,12 +2,12 @@
   <section>
     <TheButton
       label="Stored Resources"
-      @button-clicked="changeTabs('TheResourcesList')"
+      @click="changeTabs('TheResourcesList')"
     ></TheButton>
     <TheButton
       label="Add Resources"
       component="TheAddForm"
-      @button-clicked="changeTabs('TheAddForm')"
+      @click="changeTabs('TheAddForm')"
     ></TheButton>
   </section>
 </template>
