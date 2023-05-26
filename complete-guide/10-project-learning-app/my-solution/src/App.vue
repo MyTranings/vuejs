@@ -8,6 +8,7 @@
       :is="selectedComponent"
       :resources="storedResources"
       @add-new-resource="addNewResource"
+      @item:delete="deleteResource"
     ></component>
   </keep-alive>
 </template>
@@ -47,6 +48,11 @@ export default {
     },
     addNewResource(resource) {
       this.storedResources.push(resource);
+    },
+    deleteResource(id) {
+      this.storedResources = this.storedResources.filter(
+        (resource) => resource.id !== id
+      );
     },
   },
 };

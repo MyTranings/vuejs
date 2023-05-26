@@ -1,6 +1,10 @@
 <template>
   <ul>
-    <TheResourceItem v-for="resource in resources" :key="resource.id">
+    <TheResourceItem
+      v-for="resource in resources"
+      :key="resource.id"
+      @click:delete="$emit('item:delete', resource.id)"
+    >
       <h2>{{ resource.title }}</h2>
       <p>{{ resource.description }}</p>
       <a :href="resource.link">View Resource</a>
@@ -22,5 +26,6 @@ export default {
   data() {
     return {};
   },
+  methods: {},
 };
 </script>
