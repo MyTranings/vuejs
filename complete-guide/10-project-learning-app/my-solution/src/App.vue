@@ -2,12 +2,12 @@
   <TheHeader>
     <h1>RememberMe</h1>
   </TheHeader>
-  <TheTabs @change-tabs="setSelectedComponent"></TheTabs>
+  <TheTabs @tabs:change="setSelectedComponent"></TheTabs>
   <keep-alive>
     <component
       :is="selectedComponent"
       :resources="storedResources"
-      @add-new-resource="addNewResource"
+      @item:add="addNewResource"
       @item:delete="deleteResource"
     ></component>
   </keep-alive>

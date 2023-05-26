@@ -20,7 +20,7 @@
     ></TheField>
     <TheButton>Add Resource</TheButton>
     <teleport to="body">
-      <TheDialog v-if="!isValid" @close-modal="closeModal">
+      <TheDialog v-if="!isValid" @modal:close="closeModal">
         <p>Unfortunately, at least one input is invalid.</p>
         <p>
           Please check all inputs and make sure you enter at least a few
@@ -63,10 +63,10 @@ export default {
           description: this.newResource.description,
           link: this.newResource.link,
         };
-        this.$emit("add-new-resource", newResource);
-        this.title = "";
-        this.description = "";
-        this.link = "";
+        this.$emit("item:add", newResource);
+        this.newResource.title = "";
+        this.newResource.description = "";
+        this.newResource.link = "";
       }
     },
     closeModal() {

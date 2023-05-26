@@ -1,7 +1,7 @@
 <template>
   <dialog open>
     <slot></slot>
-    <TheButton @click="$emit('close-modal')">Okay</TheButton>
+    <TheButton @click="$emit('modal:close')">Okay</TheButton>
   </dialog>
 </template>
 

@@ -14,7 +14,7 @@ export default {
   components: { TheButton },
   methods: {
     changeTabs(cmp) {
-      this.$emit("change-tabs", cmp);
+      this.$emit("tabs:change", cmp);
     },
   },
 };
