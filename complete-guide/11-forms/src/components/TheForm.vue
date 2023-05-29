@@ -98,6 +98,9 @@
           name="confirm-terms"
           v-model="confirm"
         />
+        <div class="form-control">
+          <rating-control v-model="rating"></rating-control>
+        </div>
         <label for="confirm-temrs">Confirm terms</label>
       </div>
     </div>
@@ -108,7 +111,10 @@
 </template>
 
 <script>
+import RatingControl from "./RatingControl.vue";
+
 export default {
+  components: { RatingControl },
   data() {
     return {
       userName: "",
@@ -118,6 +124,7 @@ export default {
       how: [],
       confirm: false,
       userNameValidity: "pending",
+      rating: null,
     };
   },
   methods: {
@@ -138,6 +145,9 @@ export default {
       console.log(this.how);
       console.log(this.confirm);
       this.confirm = false;
+      console.log(this.rating);
+      this.rating = null;
+      console.log(this.rating);
     },
     validateInput() {
       console.log(this.userName);
