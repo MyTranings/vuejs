@@ -34,6 +34,7 @@ export default {
     return {
       results: [],
       isLoading: false,
+      error: null,
     };
   },
   methods: {
@@ -58,6 +59,11 @@ export default {
             this.results = results;
           }
           this.isLoading = false;
+        })
+        .catch((error) => {
+          console.loge(error);
+          this.isLoading = false;
+          this.error = "Failed to fetch data - please try again later.";
         });
       // axios
       //   .get(
