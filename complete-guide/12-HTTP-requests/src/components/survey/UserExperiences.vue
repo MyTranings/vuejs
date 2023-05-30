@@ -24,6 +24,7 @@
 </template>
 
 <script>
+// import axios from "axios";
 import SurveyResult from "./SurveyResult.vue";
 
 export default {
