@@ -16,6 +16,12 @@
   <div class="container">
     <transition
       name="para"
+      @before-enter="beforeEnter"
+      @before-leave="beforeLeave"
+      @after-enter="afterEnter"
+      @after-leave="afterLeave"
+      @enter="enter"
+      @leave="leave"
       fake-enter-to-class="some-class"
       fake-enter-active-class="some-active-class"
     >
@@ -39,6 +45,30 @@ export default {
     };
   },
   methods: {
+    beforeEnter(el) {
+      console.log("beforeEnter");
+      console.log(el);
+    },
+    enter(el) {
+      console.log("enter");
+      console.log(el);
+    },
+    afterEnter(el) {
+      console.log("afterEnter");
+      console.log(el);
+    },
+    beforeLeave(el) {
+      console.log("beforeLeave");
+      console.log(el);
+    },
+    leave(el) {
+      console.log("leave");
+      console.log(el);
+    },
+    afterLeave(el) {
+      console.log("afterLeave");
+      console.log(el);
+    },
     animateBlock() {
       this.animatedBlock = true;
     },
