@@ -25,7 +25,7 @@ export default {
     },
   },
   beforeRouteEnter(to, from, next) {
-    console.log("Users List - Before Router Enter");
+    console.log("Users List - beforeRouteEnter");
     console.log(to);
     console.log(from);
     next();

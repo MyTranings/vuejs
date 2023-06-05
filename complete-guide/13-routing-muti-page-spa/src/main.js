@@ -82,6 +82,12 @@ router.beforeEach(function (to, from, next) {
   // }
 });
 
+router.afterEach(function (to, from) {
+  console.log('Global afterEach');
+  console.log(to)
+  console.log(from)
+})
+
 const app = createApp(App)
 
 app.use(router);
