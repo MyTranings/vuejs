@@ -39,7 +39,6 @@ export default {
       }
 
       this.members = selectedMembers;
-      console.log(selectedTeam);
       this.teamName = selectedTeam.name;
     },
   },
