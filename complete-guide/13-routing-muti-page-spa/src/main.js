@@ -11,15 +11,18 @@ const router = createRouter({
   history: createWebHistory(),
   routes: [
     {
+      name: 'home',
       path: '/', // our-domain.com/ => our-domain.com/teams
       redirect: '/teams'
     },
     {
+      name: 'teams',
       path: '/teams', // our-domain.com/teams => TeamsList
       component: TeamsList,
       // alias: '/' // alternative to redirect without changing the URL to ../teams
       children: [
         {
+          name: 'team-members',
           path: ':teamId', // our-domain.com/teams/Id => TeamsMembers
           component: TeamMembers,
           props: true
