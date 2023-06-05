@@ -48,9 +48,9 @@ const router = createRouter({
   ],
   linkActiveClass: 'active',
   linkExactActiveClass: 'exact-active',
-  scrollBehavior(to, from, savedPosition) {
-    console.log(to)
-    console.log(from)
+  scrollBehavior(_, _2, savedPosition) {
+    // console.log(to)
+    // console.log(from)
     console.log(savedPosition)
     if (savedPosition) {
       return savedPosition
@@ -60,6 +60,20 @@ const router = createRouter({
       top: 0
     }
   }
+});
+
+router.beforeEach(function (to, from, next) {
+  console.log('Global beforeEach')
+  console.log(to);
+  console.log(from);
+  next();
+  // if (to.name === "team-members") {
+  //   next();
+  // } else {
+  //   // next(false);
+  //   // next('/');
+  //   next({ name: 'team-members', params: { teamId: 't2' } });
+  // }
 });
 
 const app = createApp(App)
