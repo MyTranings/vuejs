@@ -16,14 +16,16 @@
   <div class="container">
     <transition
       name="para"
-      @before-enter="beforeEnter"
-      @before-leave="beforeLeave"
-      @after-enter="afterEnter"
-      @after-leave="afterLeave"
-      @enter="enter"
-      @leave="leave"
       fake-enter-to-class="some-class"
       fake-enter-active-class="some-active-class"
+      @before-enter="beforeEnter"
+      @enter="enter"
+      @after-enter="afterEnter"
+      @before-leave="beforeLeave"
+      @leave="leave"
+      @after-leave="afterLeave"
+      @enter-cancelled="enterCancelled"
+      @leave-cancelled="leaveCancelled"
     >
       <p v-if="paraIsVisible">This is only sometimes visible ...</p>
     </transition>
@@ -42,32 +44,63 @@ export default {
       paraIsVisible: false,
       dialogIsVisible: false,
       usersAraVisible: false,
+      enterAnimationInterval: null,
+      leaveAnimationInterval: null,
     };
   },
   methods: {
     beforeEnter(el) {
       console.log("beforeEnter");
       console.log(el);
+      el.style.opacity = 0;
     },
-    enter(el) {
+    enter(el, done) {
       console.log("enter");
       console.log(el);
+      let round = 1;
+      this.enterAnimationInterval = setInterval(() => {
+        el.style.opacity = round * 0.01;
+        round += 1;
+        if (round > 100) {
+          clearInterval(this.enterAnimationInterval);
+          done();
+        }
+      }, 20);
     },
     afterEnter(el) {
       console.log("afterEnter");
       console.log(el);
+      // el.style.opacity = 1;
     },
     beforeLeave(el) {
       console.log("beforeLeave");
       console.log(el);
+      el.style.opacity = 1;
     },
-    leave(el) {
+    leave(el, done) {
       console.log("leave");
       console.log(el);
+      let round = 1;
+      this.leaveAnimationInterval = setInterval(() => {
+        el.style.opacity = 1 - round * 0.01;
+        round += 1;
+        if (round > 100) {
+          clearInterval(this.leaveAnimationInterval);
+          done();
+        }
+      }, 20);
     },
     afterLeave(el) {
       console.log("afterLeave");
       console.log(el);
+    },
+    enterCancelled(el) {
+      console.log(el);
+      clearInterval(this.enterAnimationInterval);
+    },
+    leaveCancelled(el) {
+      console.log(el);
+      clearInterval(this.leaveAnimationInterval);
     },
     animateBlock() {
       this.animatedBlock = true;
@@ -136,32 +169,6 @@ button:active {
 .animate {
   /* transform: translateX(-150px); */
   animation: slide-fade 0.3s ease-out forwards;
-}
-
-.para-enter-from {
-  /* opacity: 0;
-  transform: translateY(-30px); */
-}
-.para-enter-active {
-  /* transition: all 0.3s ease-out; */
-  animation: slide-scale 0.3s ease-out;
-}
-.para-enter-to {
-  /* opacity: 1;
-  transform: translateY(0); */
-}
-
-.para-leave-from {
-  /* opacity: 1;
-  transform: translateY(0); */
-}
-.para-leave-active {
-  /* transition: all 0.3s ease-in; */
-  animation: slide-scale 0.3s ease-in;
-}
-.para-leave-to {
-  /* opacity: 1;
-  transform: translateY(30px); */
 }
 
 .fade-button-enter-from,
