@@ -1,5 +1,5 @@
 <template>
-  <base-container title="Vuex" v-if="this.$store.state.isAuthenticated">
+  <base-container title="Vuex" v-if="isAuth">
     <the-counter></the-counter>
     <favorite-value></favorite-value>
     <button @click="increase">Add 10</button>
@@ -40,6 +40,11 @@ export default {
         type: "increase",
         value: 10,
       });
+    },
+  },
+  computed: {
+    isAuth() {
+      return this.$store.getters.getAuthentication;
     },
   },
 };

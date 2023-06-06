@@ -1,19 +1,25 @@
 <template>
-  <button
-    v-if="!this.$store.state.isAuthenticated"
-    @click="updateAuthentication"
-  >
-    Login
-  </button>
-  <button v-else @click="updateAuthentication">Logout</button>
+  <button v-if="!isAuth" @click="login">Login</button>
+  <button v-else @click="logout">Logout</button>
 </template>
 
 <script>
-import { mapActions } from "vuex";
+// import { mapActions } from "vuex";
 
 export default {
   methods: {
-    ...mapActions(["updateAuthentication"]),
+    // ...mapActions(["login", "logout"]),
+    login() {
+      this.$store.dispatch("login");
+    },
+    logout() {
+      this.$store.dispatch("logout");
+    },
+  },
+  computed: {
+    isAuth() {
+      return this.$store.getters.getAuthentication;
+    },
   },
 };
 </script>

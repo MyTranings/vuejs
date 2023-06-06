@@ -17,8 +17,8 @@ const store = createStore({
     increase(state, payload) {
       state.counter = state.counter + payload.value;
     },
-    updateAuthentication(state) {
-      state.isAuthenticated = !state.isAuthenticated;
+    updateAuthentication(state, playload) {
+      state.isAuthenticated = playload.isAuth;
     }
   },
   actions: {
@@ -35,7 +35,13 @@ const store = createStore({
       }, 2000)
     },
     updateAuthentication(context) {
-      context.commit('updateAuthentication')
+      context.commit('updateAuthentication', { isAuth: !context.isAuthenticated })
+    },
+    login(context) {
+      context.commit('updateAuthentication', { isAuth: true })
+    },
+    logout(context) {
+      context.commit('updateAuthentication', { isAuth: false })
     }
   },
   getters: {
