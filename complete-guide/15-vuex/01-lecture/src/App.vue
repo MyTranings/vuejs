@@ -37,7 +37,7 @@ export default {
       // });
 
       this.$store.dispatch({
-        type: "increase",
+        type: "numbers/increase",
         value: 10,
       });
     },
