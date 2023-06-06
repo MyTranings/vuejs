@@ -11,7 +11,7 @@ const store = createStore({
   },
   mutations: {
     increment(state) {
-      state.counter += 1;
+      state.counter += 2;
     },
     increase(state, payload) {
       state.counter = state.counter + payload.value;
@@ -33,7 +33,7 @@ const store = createStore({
   },
   getters: {
     finalCounter(state) {
-      return state.counter * 2;
+      return state.counter;
     },
     normalizedCounter(_, getters) {
       const finalCounter = getters.finalCounter;

@@ -32,7 +32,7 @@ export default {
       // });
 
       this.$store.dispatch({
-        type: "increment",
+        type: "increase",
         value: 10,
       });
     },
