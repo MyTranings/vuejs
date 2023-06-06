@@ -1,8 +1,19 @@
 <template>
-  <button>Login</button>
-  <button>Logout</button>
+  <button
+    v-if="!this.$store.state.isAuthenticated"
+    @click="updateAuthentication"
+  >
+    Login
+  </button>
+  <button v-else @click="updateAuthentication">Logout</button>
 </template>
 
 <script>
-export default {};
+import { mapActions } from "vuex";
+
+export default {
+  methods: {
+    ...mapActions(["updateAuthentication"]),
+  },
+};
 </script>

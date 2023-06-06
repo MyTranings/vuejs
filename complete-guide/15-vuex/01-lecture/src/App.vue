@@ -1,5 +1,5 @@
 <template>
-  <base-container title="Vuex">
+  <base-container title="Vuex" v-if="this.$store.state.isAuthenticated">
     <the-counter></the-counter>
     <favorite-value></favorite-value>
     <button @click="increase">Add 10</button>
