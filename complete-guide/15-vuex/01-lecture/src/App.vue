@@ -5,6 +5,9 @@
     <button @click="increase">Add 10</button>
     <change-counter></change-counter>
   </base-container>
+  <base-container title="User Auth">
+    <user-auth></user-auth>
+  </base-container>
 </template>
 
 <script>
@@ -12,6 +15,7 @@ import BaseContainer from "./components/BaseContainer.vue";
 import TheCounter from "./components/TheCounter.vue";
 import ChangeCounter from "./components/ChangeCounter.vue";
 import FavoriteValue from "./components/FavoriteValue.vue";
+import UserAuth from "./components/UserAuth.vue";
 
 export default {
   components: {
@@ -19,6 +23,7 @@ export default {
     TheCounter,
     ChangeCounter,
     FavoriteValue,
+    UserAuth,
   },
   methods: {
     increase() {
