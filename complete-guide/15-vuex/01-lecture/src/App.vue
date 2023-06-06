@@ -26,8 +26,13 @@ export default {
       // this.$store.commit("increase", { value: 10 });
 
       // V2
-      this.$store.commit({
-        type: "increase",
+      // this.$store.commit({
+      //   type: "increase",
+      //   value: 10,
+      // });
+
+      this.$store.dispatch({
+        type: "increment",
         value: 10,
       });
     },
