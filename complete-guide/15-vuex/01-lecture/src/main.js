@@ -3,11 +3,10 @@ import { createStore } from 'vuex';
 
 import App from './App.vue';
 
-const store = createStore({
+const counterModule = {
   state() {
     return {
-      counter: 0,
-      isAuthenticated: false
+      counter: 0
     }
   },
   mutations: {
@@ -17,9 +16,6 @@ const store = createStore({
     increase(state, payload) {
       state.counter = state.counter + payload.value;
     },
-    updateAuthentication(state, playload) {
-      state.isAuthenticated = playload.isAuth;
-    }
   },
   actions: {
     increment(context) {
@@ -34,15 +30,6 @@ const store = createStore({
         context.commit('increase', playload)
       }, 2000)
     },
-    updateAuthentication(context) {
-      context.commit('updateAuthentication', { isAuth: !context.isAuthenticated })
-    },
-    login(context) {
-      context.commit('updateAuthentication', { isAuth: true })
-    },
-    logout(context) {
-      context.commit('updateAuthentication', { isAuth: false })
-    }
   },
   getters: {
     finalCounter(state) {
@@ -58,6 +45,35 @@ const store = createStore({
       }
       return finalCounter;
     },
+  }
+}
+
+const store = createStore({
+  modules: {
+    counter: counterModule
+  },
+  state() {
+    return {
+      isAuthenticated: false
+    }
+  },
+  mutations: {
+    updateAuthentication(state, playload) {
+      state.isAuthenticated = playload.isAuth;
+    }
+  },
+  actions: {
+    updateAuthentication(context) {
+      context.commit('updateAuthentication', { isAuth: !context.isAuthenticated })
+    },
+    login(context) {
+      context.commit('updateAuthentication', { isAuth: true })
+    },
+    logout(context) {
+      context.commit('updateAuthentication', { isAuth: false })
+    }
+  },
+  getters: {
     getAuthentication(state) {
       return state.isAuthenticated;
     }
