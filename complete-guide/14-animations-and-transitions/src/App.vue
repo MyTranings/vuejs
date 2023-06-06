@@ -15,9 +15,7 @@
   </base-modal>
   <div class="container">
     <transition
-      name="para"
-      fake-enter-to-class="some-class"
-      fake-enter-active-class="some-active-class"
+      :css="false"
       @before-enter="beforeEnter"
       @enter="enter"
       @after-enter="afterEnter"
