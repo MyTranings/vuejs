@@ -23,7 +23,6 @@ export default {
   props: ["id", "image", "title", "price", "description"],
   methods: {
     addToCart() {
-      console.log(this.$store);
       this.$store.dispatch("cart/addProductToCart", {
         id: this.id,
       });
