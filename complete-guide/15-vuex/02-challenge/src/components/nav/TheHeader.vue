@@ -37,10 +37,10 @@ export default {
   },
   methods: {
     login() {
-      this.$store.commit("auth/login");
+      this.$store.dispatch("auth/login");
     },
     logout() {
-      this.$store.commit("auth/logout");
+      this.$store.dispatch("auth/logout");
     },
   },
 };

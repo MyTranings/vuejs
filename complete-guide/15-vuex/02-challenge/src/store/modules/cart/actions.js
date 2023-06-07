@@ -3,6 +3,6 @@ export default {
     context.commit('addProductToCart', payload)
   },
   removeProductFromCart(context, payload) {
-    context.commit('removeProductToCart', payload)
+    context.commit('removeProductFromCart', payload)
   },
 }
