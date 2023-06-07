@@ -30,6 +30,7 @@ export default {
   inject: ["cart"],
   computed: {
     isLoggedIn() {
+      console.log(this.$store);
       return this.$store.getters["auth/getAuthentication"];
     },
   },
