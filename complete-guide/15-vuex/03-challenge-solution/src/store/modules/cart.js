@@ -1,17 +1,20 @@
 export default {
   state() {
     return {
-      cart: { items: [], total: 0, qty: 0 },
+      items: [],
+      total: 0,
+      qty: 0
     }
   },
   mutations: {
-    addProductToCart(productData) {
-      const productInCartIndex = this.cart.items.findIndex(
+    addProductToCart(state, playload) {
+      const productData = playload.product;
+      const productInCartIndex = state.items.findIndex(
         (ci) => ci.productId === productData.id
       );
 
       if (productInCartIndex >= 0) {
-        this.cart.items[productInCartIndex].qty++;
+        state.items[productInCartIndex].qty++;
       } else {
         const newItem = {
           productId: productData.id,
@@ -20,22 +23,39 @@ export default {
           price: productData.price,
           qty: 1,
         };
-        this.cart.items.push(newItem);
+        state.items.push(newItem);
       }
-      this.cart.qty++;
-      this.cart.total += productData.price;
+      state.qty++;
+      state.total += productData.price;
     },
-    removeProductFromCart(prodId) {
-      const productInCartIndex = this.cart.items.findIndex(
+    removeProductFromCart(state, payload) {
+      const prodId = payload.productId;
+      const productInCartIndex = state.items.findIndex(
         (cartItem) => cartItem.productId === prodId
       );
-      const prodData = this.cart.items[productInCartIndex];
-      this.cart.items.splice(productInCartIndex, 1);
-      this.cart.qty -= prodData.qty;
-      this.cart.total -= prodData.price * prodData.qty;
+      const prodData = state.items[productInCartIndex];
+      state.items.splice(productInCartIndex, 1);
+      state.qty -= prodData.qty;
+      state.total -= prodData.price * prodData.qty;
     },
   },
   actions: {
-
+    addProductToCart(context, payload) {
+      context.commit('addProductToCart', payload)
+    },
+    removeProductToCart(context, payload) {
+      context.commit('removeProductToCart', payload)
+    }
+  },
+  getters: {
+    products(state) {
+      return state.items;
+    },
+    totalSum(state) {
+      return state.total;
+    },
+    quantity(state) {
+      return state.quantity;
+    }
   }
 }
