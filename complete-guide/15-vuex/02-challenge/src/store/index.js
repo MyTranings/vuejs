@@ -6,11 +6,13 @@ import rootGetters from './getters.js';
 
 import AuthModule from './modules/auth/index.js';
 import ProductsModule from './modules/products/index.js';
+import CartModule from './modules/cart/index.js'
 
 const store = createStore({
   modules: {
     auth: AuthModule,
-    products: ProductsModule
+    products: ProductsModule,
+    cart: CartModule
   },
   state() {
     return {

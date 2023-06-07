@@ -27,11 +27,12 @@
 <script>
 export default {
   // inject: ["isLoggedIn", "login", "logout", "cart"],
-  inject: ["cart"],
   computed: {
     isLoggedIn() {
-      console.log(this.$store);
       return this.$store.getters["auth/getAuthentication"];
+    },
+    cart() {
+      return this.$store.getters["cart/getCart"];
     },
   },
   methods: {

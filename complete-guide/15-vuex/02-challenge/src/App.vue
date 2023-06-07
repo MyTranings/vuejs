@@ -41,16 +41,16 @@ export default {
       //     price: 6.99,
       //   },
       // ],
-      cart: { items: [], total: 0, qty: 0 },
+      // cart: { items: [], total: 0, qty: 0 },
     };
   },
   provide() {
     return {
       // isLoggedIn: this.isLoggedIn,
       // products: this.products,
-      cart: this.cart,
-      addProductToCart: this.addProductToCart,
-      removeProductFromCart: this.removeProductFromCart,
+      // cart: this.cart,
+      // addProductToCart: this.addProductToCart,
+      // removeProductFromCart: this.removeProductFromCart,
       // login: this.login,
       // logout: this.logout,
     };

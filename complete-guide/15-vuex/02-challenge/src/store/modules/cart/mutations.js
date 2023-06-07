@@ -1,32 +1,31 @@
 export default {
-  addProductToCart(context, productData) {
-    const productInCartIndex = this.cart.items.findIndex(
-      (ci) => ci.productId === productData.id
+  addProductToCart(context, payload) {
+    const productInCartIndex = context.cart.items.findIndex(
+      (ci) => ci.productId === payload.id
     );
 
     if (productInCartIndex >= 0) {
-      this.cart.items[productInCartIndex].qty++;
+      context.cart.items[productInCartIndex].qty++;
     } else {
       const newItem = {
-        productId: productData.id,
-        title: productData.title,
-        image: productData.image,
-        price: productData.price,
+        productId: payload.id,
+        title: payload.title,
+        image: payload.image,
+        price: payload.price,
         qty: 1,
       };
-      this.cart.items.push(newItem);
+      context.cart.items.push(newItem);
     }
-    this.cart.qty++;
-    this.cart.total += productData.price;
+    context.cart.qty++;
+    context.cart.total += payload.price;
   },
-
-  removeProductFromCart(prodId) {
-    const productInCartIndex = this.cart.items.findIndex(
-      (cartItem) => cartItem.productId === prodId
+  removeProductFromCart(context, payload) {
+    const productInCartIndex = context.cart.items.findIndex(
+      (cartItem) => cartItem.productId === payload.prodId
     );
-    const prodData = this.cart.items[productInCartIndex];
-    this.cart.items.splice(productInCartIndex, 1);
-    this.cart.qty -= prodData.qty;
-    this.cart.total -= prodData.price * prodData.qty;
+    const prodData = context.cart.items[productInCartIndex];
+    context.cart.items.splice(productInCartIndex, 1);
+    context.cart.qty -= prodData.qty;
+    context.cart.total -= prodData.price * prodData.qty;
   },
 }
