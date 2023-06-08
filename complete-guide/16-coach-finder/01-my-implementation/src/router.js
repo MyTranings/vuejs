@@ -1,7 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router';
 
 import CoachesList from './pages/CoachesList.vue';
+import CoachRegister from './pages/CoachRegister.vue';
 import RequestsList from './pages/RequestsList.vue';
+import ContactCoach from './pages/ContactCoach.vue';
 
 const router = createRouter({
   history: createWebHistory(),
@@ -25,6 +27,11 @@ const router = createRouter({
       ]
     },
     {
+      name: 'coach-register',
+      path: '/register',
+      component: CoachRegister,
+    },
+    {
       name: 'requests',
       path: '/requests',
       component: RequestsList,
@@ -32,7 +39,7 @@ const router = createRouter({
     {
       name: 'contact',
       path: '/contact',
-      components: 'ContactCoach'
+      component: ContactCoach
     }
   ]
 })
