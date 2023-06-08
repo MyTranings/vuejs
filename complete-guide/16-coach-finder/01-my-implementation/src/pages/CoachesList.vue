@@ -5,8 +5,12 @@
   </header>
   <coaches-filter></coaches-filter>
   <ul>
-    <li>
-      <h2>Coach name</h2>
+    <li v-for="coach in coaches" :key="coach.id">
+      <h2>{{ coach.firstName }} {{ coach.lastName }}</h2>
+      <p>{{ coach.description }}</p>
+      <div class="rate">
+        {{ coach.rate }}
+      </div>
     </li>
   </ul>
 </template>
@@ -16,6 +20,11 @@ import CoachesFilter from "./../components/coaches/CoachesFilter.vue";
 
 export default {
   components: { CoachesFilter },
+  computed: {
+    coaches() {
+      return this.$store.getters["coaches/getCoaches"];
+    },
+  },
 };
 </script>
 
