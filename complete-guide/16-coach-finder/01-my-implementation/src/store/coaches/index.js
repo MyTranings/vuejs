@@ -6,14 +6,19 @@ export default {
     }
   },
   mutations: {
-    pullCoaches(state) {
+    pullCoaches(state, payload) {
+      state.coaches = payload;
+    }
+  },
+  actions: {
+    pullCoaches(context) {
       // fetch('https://dummyjson.com/users/?limit=10')
       fetch('https://jsonplaceholder.typicode.com/users')
         .then((res) => {
           return res.json()
         })
         .then(data => {
-          state.coaches = data.map(coach => {
+          const coaches = data.map(coach => {
             const name = coach.name.split(' ');
             return {
               id: coach.id,
@@ -23,12 +28,8 @@ export default {
               rate: '1' // Generate random decimal number between 1.0 - 5.0
             }
           })
+          context.commit('pullCoaches', coaches)
         });
-    }
-  },
-  actions: {
-    pullCoaches(context) {
-      context.commit('pullCoaches')
     }
   },
   getters: {
