@@ -5,21 +5,23 @@
   </header>
   <coaches-filter></coaches-filter>
   <ul>
-    <li v-for="coach in coaches" :key="coach.id">
-      <h2>{{ coach.firstName }} {{ coach.lastName }}</h2>
-      <p>{{ coach.description }}</p>
-      <div class="rate">
-        {{ coach.rate }}
-      </div>
-    </li>
+    <coach-item
+      v-for="coach in coaches"
+      :key="coach.id"
+      :id="coach.id"
+      :name="coach.firstName + ' ' + coach.lastName"
+      :description="coach.description"
+      :rate="coach.rate"
+    ></coach-item>
   </ul>
 </template>
 
 <script>
 import CoachesFilter from "./../components/coaches/CoachesFilter.vue";
+import CoachItem from "./../components/coaches/CoachItem.vue";
 
 export default {
-  components: { CoachesFilter },
+  components: { CoachesFilter, CoachItem },
   computed: {
     coaches() {
       return this.$store.getters["coaches/getCoaches"];

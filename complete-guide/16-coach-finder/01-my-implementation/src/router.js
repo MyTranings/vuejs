@@ -1,9 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router';
 
 import CoachesList from './pages/CoachesList.vue';
+import PassThrough from './pages/PassThrough.vue';
 import CoachRegister from './pages/CoachRegister.vue';
 import RequestsList from './pages/RequestsList.vue';
 import ContactCoach from './pages/ContactCoach.vue';
+import CoachMember from './components/coaches/CoachMember.vue'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -14,14 +16,20 @@ const router = createRouter({
       redirect: '/coaches'
     },
     {
-      name: 'coaches',
+      name: 'pass-through-coaches',
       path: '/coaches',
-      component: CoachesList,
+      component: PassThrough,
       children: [
         {
-          name: 'coach',
-          path: '/coaches/:coachId',
-          component: null,
+          name: 'coaches',
+          path: '',
+          component: CoachesList,
+          props: true
+        },
+        {
+          name: 'coach-member',
+          path: ':coachId',
+          component: CoachMember,
           props: true
         }
       ]
@@ -40,7 +48,14 @@ const router = createRouter({
       name: 'contact',
       path: '/contact',
       component: ContactCoach
-    }
+    },
+    // Use coaches Id as a stand alone route
+    // {
+    //   name: 'coach-member',
+    //   path: '/coaches/:coachId',
+    //   component: CoachMember,
+    //   props: true
+    // }
   ]
 })
 

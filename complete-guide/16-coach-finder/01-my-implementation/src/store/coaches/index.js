@@ -35,6 +35,11 @@ export default {
   getters: {
     getCoaches(state) {
       return state.coaches;
+    },
+    getSingleCoach: (state) => (coachId) => {
+      return state.coaches.find(coach => {
+        return coach.id === Number(coachId)
+      });
     }
   },
 }

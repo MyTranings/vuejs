@@ -10,6 +10,4 @@ const app = createApp(App);
 app.use(router);
 app.use(store);
 
-console.log(store)
-
 app.mount('#app');
