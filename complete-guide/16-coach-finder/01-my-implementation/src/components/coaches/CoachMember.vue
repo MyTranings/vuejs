@@ -6,7 +6,15 @@
       <h2>{{ coach.firstName }} {{ coach.lastName }}</h2>
       <p>{{ coach.description }}</p>
       <p>{{ coach.rate }}</p>
-      <router-link to="/contact">Contact coach</router-link>
+      <router-link
+        :to="{
+          name: 'contact',
+          query: {
+            coach: coachId,
+          },
+        }"
+        >Contact coach</router-link
+      >
     </div>
   </div>
 </template>

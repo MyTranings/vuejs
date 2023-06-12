@@ -4,7 +4,7 @@
     <form @submit.prevent="addRequest">
       <div class="field-wrapper">
         <label for="coach">Coach *:</label>
-        <select name="coach" id="coach" required v-model="coachId">
+        <select name="coach" id="coach" required v-model="selectedCoach">
           <option>Select a coach</option>
           <option v-for="coach in coaches" :key="coach.id" :value="coach.id">
             {{ coach.firstName }} {{ coach.lastName }}
@@ -31,14 +31,17 @@
 
 <script>
 export default {
+  props: ["currentCoach"],
   data() {
     return {
-      coachId: null,
       message: "",
       email: "",
     };
   },
   computed: {
+    selectedCoach() {
+      return this.currentCoach;
+    },
     coaches() {
       return this.$store.getters["coaches/getCoaches"];
     },

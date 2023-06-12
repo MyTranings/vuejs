@@ -50,7 +50,8 @@ const router = createRouter({
     {
       name: 'contact',
       path: '/contact',
-      component: ContactCoach
+      component: ContactCoach,
+      props: true
     },
     // Use coaches Id as a stand alone route
     // {
