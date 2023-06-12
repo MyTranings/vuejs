@@ -1,9 +1,18 @@
 <template>
-  <div><h2>Requests List</h2></div>
+  <div>
+    <h2>Requests List</h2>
+    <ul>
+      <request-item></request-item>
+    </ul>
+  </div>
 </template>
 
 <script>
-export default {};
+import RequestItem from "../components/requests/RequestItem.vue";
+
+export default {
+  components: { RequestItem },
+};
 </script>
 
 <style></style>

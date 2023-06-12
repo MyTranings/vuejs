@@ -14,6 +14,7 @@ export default {
   },
   mounted() {
     this.$store.dispatch("coaches/pullCoaches");
+    this.$store.dispatch("requests/fakeData");
   },
 };
 </script>
