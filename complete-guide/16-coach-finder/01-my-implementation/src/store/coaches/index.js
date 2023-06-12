@@ -32,14 +32,18 @@ export default {
           console.log('fetch')
           const coaches = data.map(coach => {
             const name = coach.name.split(' ');
+            let rate = (Math.random() * 5).toFixed(2);
+            rate = rate < 1 ? 1 : rate > 5 ? 5 : rate;
+
             return {
               id: coach.id,
               firstName: name[0],
               lastName: name[1],
               description: '', // Pull random text
-              rate: '1' // Generate random decimal number between 1.0 - 5.0
+              rate: rate
             }
           })
+          console.log(coaches)
           context.commit('pullCoaches', coaches)
           context.dispatch('updateLoading', { loading: false })
         });

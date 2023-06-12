@@ -22,7 +22,7 @@ export default {
         console.log()
         requests.push({
           id: Date.now() + i,
-          coachId: parseInt(Math.random(10) * 10),
+          coachId: parseInt(Math.random() * 10),
           message: 'Lorem ipsum sin dolar',
           email: 'test@sdsa.com'
         })
