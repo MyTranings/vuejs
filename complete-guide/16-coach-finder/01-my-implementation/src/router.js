@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 
 import CoachesList from './pages/CoachesList.vue';
-import PassThrough from './pages/PassThrough.vue';
+import CoachesPassThrough from './pages/CoachesPassThrough.vue';
 import CoachRegister from './pages/CoachRegister.vue';
 import RequestsList from './pages/RequestsList.vue';
 import ContactCoach from './pages/ContactCoach.vue';
@@ -18,7 +18,10 @@ const router = createRouter({
     {
       name: 'pass-through-coaches',
       path: '/coaches',
-      component: PassThrough,
+      component: CoachesPassThrough,
+      meta: {
+        componentsData: 'pullCoaches'
+      },
       children: [
         {
           name: 'coaches',
