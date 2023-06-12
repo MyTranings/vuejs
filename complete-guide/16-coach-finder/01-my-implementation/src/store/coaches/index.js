@@ -7,14 +7,20 @@ export default {
     }
   },
   mutations: {
+    updateLoading(state, payload) {
+      state.isLoading = payload.loading;
+    },
     pullCoaches(state, payload) {
       state.coaches = payload;
     },
-    updateLoading(state, payload) {
-      state.isLoading = payload.loading;
+    registerCoach(state, payload) {
+      state.coaches.unshift(payload.coach);
     }
   },
   actions: {
+    updateLoading(context, payload) {
+      context.commit('updateLoading', payload)
+    },
     pullCoaches(context) {
       context.dispatch('updateLoading', { loading: true })
       // fetch('https://dummyjson.com/users/?limit=10')
@@ -38,8 +44,12 @@ export default {
           context.dispatch('updateLoading', { loading: false })
         });
     },
-    updateLoading(context, payload) {
-      context.commit('updateLoading', payload)
+    registerCoach(context, payload) {
+      const newCoach = {
+        id: Date.now(),
+        ...payload.coach
+      }
+      context.commit('registerCoach', { coach: newCoach });
     }
   },
   getters: {

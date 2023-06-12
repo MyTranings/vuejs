@@ -4,9 +4,9 @@
 
 <script>
 export default {
-  mounted() {
-    this.$store.dispatch("coaches/pullCoaches");
-  },
+  // mounted() {
+  //   this.$store.dispatch("coaches/pullCoaches");
+  // },
 };
 </script>
 

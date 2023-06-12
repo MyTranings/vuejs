@@ -12,6 +12,9 @@ export default {
   components: {
     TheNavigation,
   },
+  mounted() {
+    this.$store.dispatch("coaches/pullCoaches");
+  },
 };
 </script>
 
