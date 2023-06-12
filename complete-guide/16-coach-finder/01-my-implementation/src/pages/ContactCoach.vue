@@ -1,9 +1,13 @@
 <template>
-  <div></div>
+  <add-request></add-request>
 </template>
 
 <script>
-export default {};
+import AddRequest from "../components/requests/AddRequest.vue";
+
+export default {
+  components: { AddRequest },
+};
 </script>
 
 <style></style>

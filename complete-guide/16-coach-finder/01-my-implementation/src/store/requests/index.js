@@ -10,7 +10,7 @@ export default {
       state.requests = [...payload.requests];
     },
     addRequest(state, payload) {
-      state.requests.unshift(payload);
+      state.requests.unshift(payload.request);
     }
   },
   actions: {
@@ -30,6 +30,7 @@ export default {
       context.commit('fakeData', { requests: requests });
     },
     addRequest(context, payload) {
+      console.log(payload)
       context.commit('addRequest', payload)
     }
   },
