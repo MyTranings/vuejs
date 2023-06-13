@@ -1,6 +1,6 @@
 <template>
   <li v-for="request in requests" :key="request.id">
-    <h3>CoachId: {{ request.coachId }}</h3>
+    <h3>Coach: {{ coachName(request.coachId) }}</h3>
     <div>
       <h4>Message:</h4>
       <p>{{ request.message }}</p>
@@ -17,6 +17,17 @@ export default {
   computed: {
     requests() {
       return this.$store.getters["requests/getRequests"];
+    },
+    isLaoding() {
+      return this.$store.getters["coaches/isLoading"];
+    },
+  },
+  methods: {
+    coachName(id) {
+      if (!this.isLaoding) {
+        const coach = this.$store.getters["coaches/getSingleCoach"](id);
+        return `${coach.firstName} ${coach.lastName}`;
+      }
     },
   },
 };

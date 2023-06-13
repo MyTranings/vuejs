@@ -43,7 +43,6 @@ export default {
               rate: rate
             }
           })
-          console.log(coaches)
           context.commit('pullCoaches', coaches)
           context.dispatch('updateLoading', { loading: false })
         });

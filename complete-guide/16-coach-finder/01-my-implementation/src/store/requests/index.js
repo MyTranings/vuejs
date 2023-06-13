@@ -19,10 +19,9 @@ export default {
       const requests = [];
 
       for (let i = 0; i < interations; i += 1) {
-        console.log()
         requests.push({
           id: Date.now() + i,
-          coachId: parseInt(Math.random() * 10),
+          coachId: parseInt(Math.random() * 10) + 1,
           message: 'Lorem ipsum sin dolar',
           email: 'test@sdsa.com'
         })
