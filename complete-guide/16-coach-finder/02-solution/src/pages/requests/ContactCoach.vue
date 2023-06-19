@@ -38,6 +38,13 @@ export default {
         this.formIsValid = false;
         return false;
       }
+
+      this.$store.dispatch("requests/contactCoach", {
+        coachId: this.$route.params.id,
+        email: this.email,
+        message: this.messasge,
+      });
+      this.$router.replace("/coaches");
     },
   },
 };
