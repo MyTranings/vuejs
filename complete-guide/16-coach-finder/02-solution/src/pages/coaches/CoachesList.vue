@@ -32,9 +32,10 @@ export default {
   computed: {
     filteredCoaches() {
       const coaches = this.$store.getters["coaches/coaches"];
+      console.log(coaches);
 
       return coaches.filter((coach) => {
-        if (this.activeFilters.fronend && coach.areas.includes("fronend")) {
+        if (this.activeFilters.fronend && coach.areas.includes("frontend")) {
           return true;
         }
         if (this.activeFilters.backend && coach.areas.includes("backend")) {
