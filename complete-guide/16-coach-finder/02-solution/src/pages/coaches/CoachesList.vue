@@ -3,7 +3,7 @@
   <base-card>
     <section>
       <div class="controls">
-        <base-button mode="outline">Refresh</base-button>
+        <base-button mode="outline" @click="loadCoaches">Refresh</base-button>
         <base-button v-if="!isCoach" link to="/register">Register</base-button>
       </div>
       <ul v-if="hasCoaches">
@@ -32,7 +32,6 @@ export default {
   computed: {
     filteredCoaches() {
       const coaches = this.$store.getters["coaches/coaches"];
-      console.log(coaches);
 
       return coaches.filter((coach) => {
         if (this.activeFilters.fronend && coach.areas.includes("frontend")) {
@@ -67,6 +66,12 @@ export default {
     setFilters(updatedFilters) {
       this.activeFilters = updatedFilters;
     },
+    loadCoaches() {
+      this.$store.dispatch("coaches/loadCoaches");
+    },
+  },
+  created() {
+    this.loadCoaches();
   },
 };
 </script>
