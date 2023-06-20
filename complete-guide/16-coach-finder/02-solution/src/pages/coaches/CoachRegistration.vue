@@ -1,5 +1,6 @@
 <template>
   <section>
+    <base-spinner v-show="isLoading"></base-spinner>
     <base-card>
       <h2>Register as a coach now!</h2>
       <coach-form @save-data="saveData"></coach-form>
@@ -12,9 +13,19 @@ import CoachForm from "./../../components/coaches/CoachForm.vue";
 
 export default {
   components: { CoachForm },
+  data() {
+    return {
+      isLoading: false,
+    };
+  },
   methods: {
-    saveData(data) {
-      this.$store.dispatch("coaches/registerCoach", data);
+    async saveData(data) {
+      this.isLoading = true;
+
+      await this.$store.dispatch("coaches/registerCoach", data);
+
+      this.isLoading = false;
+
       this.$router.replace("/coaches"); // no back
     },
   },
