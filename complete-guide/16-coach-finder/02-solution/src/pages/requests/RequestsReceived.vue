@@ -1,6 +1,10 @@
 <template>
   <div>
-    <base-dialog v-if="!!error" @close="handleClose" title="An error occurred!">
+    <base-dialog
+      :show="!!error"
+      @close="handleClose"
+      title="An error occurred!"
+    >
       <p>{{ error }}</p>
     </base-dialog>
     <section>
@@ -56,6 +60,9 @@ export default {
     },
     handleError() {
       this.error = null;
+    },
+    handleClose() {
+      this.error = false;
     },
   },
   created() {
