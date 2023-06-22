@@ -76,17 +76,22 @@ export default {
 
       this.isLoading = true;
 
-      if (this.mode === "login") {
-        //.. login
-      } else {
-        try {
-          await this.$store.dispatch("signup", {
-            email: this.email,
-            password: this.password,
-          });
-        } catch (error) {
-          this.error = error.message || "Failed to authenticate. Check later!";
-        }
+      const actionPayload = {
+        email: this.email,
+        password: this.password,
+      };
+
+      try {
+        // Short way
+        await this.$store.dispatch(this.mode, actionPayload);
+        // Long way
+        // if (this.mode === "login") {
+        // await this.$store.dispatch("login", actionPayload);
+        // } else {
+        // await this.$store.dispatch("signup", actionPayload);
+        // }
+      } catch (error) {
+        this.error = error.message || "Failed to authenticate. Check later!";
       }
       this.isLoading = false;
     },
