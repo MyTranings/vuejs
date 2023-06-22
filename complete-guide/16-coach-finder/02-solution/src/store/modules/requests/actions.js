@@ -5,7 +5,7 @@ export default {
       message: payload.message,
     }
 
-    const response = await fetch(`https://coach-finder-f4fb1-default-rtdb.europe-west1.firebasedatabase.app/requests/${payload.coachId}.json`, {
+    const response = await fetch(`https://coach-finder-2120f-default-rtdb.europe-west1.firebasedatabase.app/requests/${payload.coachId}.json`, {
       method: 'POST',
       body: JSON.stringify(newRequest)
     })
@@ -24,7 +24,7 @@ export default {
   },
   async fetchRequests(context) {
     const coachId = context.rootGetters.userId;
-    const response = await fetch(`https://coach-finder-f4fb1-default-rtdb.europe-west1.firebasedatabase.app/requests/${coachId}.json`);
+    const response = await fetch(`https://coach-finder-2120f-default-rtdb.europe-west1.firebasedatabase.app/requests/${coachId}.json`);
     const responseData = await response.json();
 
     if (!response.ok) {

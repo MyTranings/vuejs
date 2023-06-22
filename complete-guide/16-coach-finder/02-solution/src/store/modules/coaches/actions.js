@@ -9,7 +9,7 @@ export default {
       areas: data.areas
     }
 
-    const response = await fetch(`https://coach-finder-f4fb1-default-rtdb.europe-west1.firebasedatabase.app/coaches/${userId}.json`, {
+    const response = await fetch(`https://coach-finder-2120f-default-rtdb.europe-west1.firebasedatabase.app/coaches/${userId}.json`, {
       method: 'PUT',
       body: JSON.stringify(coachData)
     });
@@ -29,7 +29,7 @@ export default {
       return;
     }
 
-    const response = await fetch('https://coach-finder-f4fb1-default-rtdb.europe-west1.firebasedatabase.app/coaches.json');
+    const response = await fetch('https://coach-finder-2120f-default-rtdb.europe-west1.firebasedatabase.app/coaches.json');
     const responseData = await response.json();
 
     if (!response.ok) {
