@@ -10,16 +10,12 @@ export default {
     })
     const responseData = await response.json();
 
-    console.log(response)
     console.log(responseData)
 
     if (!response.ok) {
-      console.log(responseData)
       const error = new Error(response.message || 'Failed to authenticate')
       throw error;
     }
-
-    console.log(responseData)
 
     context.commit('setUser', {
       token: responseData.idToken,
@@ -38,8 +34,9 @@ export default {
     })
     const responseData = await response.json();
 
+    console.log(responseData)
+
     if (!response.ok) {
-      console.log(responseData)
       const error = new Error(responseData.message || 'Failed to authenticate')
       throw error;
     }
