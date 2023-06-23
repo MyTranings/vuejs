@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import { ref, reactive, computed } from "vue";
+import { ref, reactive, computed, watch } from "vue";
 
 export default {
   // Composition API
@@ -24,8 +24,9 @@ export default {
     const lastName = ref("");
     const user = reactive({
       name: "",
-      age: 32,
+      age: null,
     });
+    const age = ref(32);
 
     function changeAge() {
       user.age += 1;
@@ -46,6 +47,17 @@ export default {
     console.log(userName);
 
     user.name = userName;
+    user.age = age;
+
+    watch([userName, age], function (newValues, oldValues) {
+      console.log("New Age:", newValues[1]);
+      console.log("Old Age:", oldValues[1]);
+      console.log("New Name:", newValues[0]);
+      console.log("Old Name:", oldValues[0]);
+      // if (newVal !== oldVal) {
+      //   console.log("Changed");
+      // }
+    });
 
     return {
       user: user,
