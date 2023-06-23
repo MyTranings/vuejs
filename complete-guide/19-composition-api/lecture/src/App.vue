@@ -3,9 +3,17 @@
     <!-- <h2>{{ userName }}</h2>
     <input type="text" v-model="userName" />
     <h3>{{ age }}</h3> -->
-    <h2>{{ user.name }}</h2>
+
+    <!-- <h2>{{ user.name }}</h2>
     <input type="text" v-model="user.name" />
-    <h3>{{ user.age }}</h3>
+    <h3>{{ user.age }}</h3> -->
+
+    <!-- <user-data :userName="user.name" :age="user.age"></user-data> -->
+    <user-data
+      :first-name="firstName"
+      :last-name="lastName"
+      :age="user.age"
+    ></user-data>
     <button @click="setAge">Change Age</button>
     <div>
       <input type="text" placeholder="First name" v-model="firstName" />
@@ -17,8 +25,10 @@
 
 <script>
 import { ref, reactive, computed, watch } from "vue";
+import UserData from "./components/UserData.vue";
 
 export default {
+  components: { UserData },
   // Composition API
   setup() {
     const firstName = ref("");
