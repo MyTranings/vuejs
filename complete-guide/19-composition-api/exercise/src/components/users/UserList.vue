@@ -27,64 +27,72 @@
 
 <script>
 import UserItem from "./UserItem.vue";
+import { ref, computed, watch } from "vue";
 
 export default {
   components: {
     UserItem,
   },
   props: ["users"],
-  data() {
-    return {
-      enteredSearchTerm: "",
-      activeSearchTerm: "",
-      sorting: null,
-    };
-  },
-  computed: {
-    availableUsers() {
+  emits: ["list-projects"],
+  setup(props) {
+    const enteredSearchTerm = ref("");
+    const activeSearchTerm = ref("");
+
+    const availableUsers = computed(() => {
       let users = [];
-      if (this.activeSearchTerm) {
-        users = this.users.filter((usr) =>
-          usr.fullName.includes(this.activeSearchTerm)
+      if (activeSearchTerm.value) {
+        users = props.users.filter((usr) =>
+          usr.fullName.includes(activeSearchTerm.value)
         );
-      } else if (this.users) {
-        users = this.users;
+      } else if (props.users) {
+        users = props.users;
       }
       return users;
-    },
-    displayedUsers() {
-      if (!this.sorting) {
-        return this.availableUsers;
+    });
+
+    function updateSearch(val) {
+      enteredSearchTerm.value = val;
+    }
+
+    watch(enteredSearchTerm, (newVal) => {
+      setTimeout(() => {
+        if (newVal === enteredSearchTerm.value) {
+          activeSearchTerm.value = newVal;
+        }
+      }, 300);
+    });
+
+    const sorting = ref(null);
+
+    const displayedUsers = computed(() => {
+      if (!sorting.value) {
+        return availableUsers.value;
       }
-      return this.availableUsers.slice().sort((u1, u2) => {
-        if (this.sorting === "asc" && u1.fullName > u2.fullName) {
+      return availableUsers.value.slice().sort((u1, u2) => {
+        if (sorting.value === "asc" && u1.fullName > u2.fullName) {
           return 1;
-        } else if (this.sorting === "asc") {
+        } else if (sorting.value === "asc") {
           return -1;
-        } else if (this.sorting === "desc" && u1.fullName > u2.fullName) {
+        } else if (sorting.value === "desc" && u1.fullName > u2.fullName) {
           return -1;
         } else {
           return 1;
         }
       });
-    },
-  },
-  methods: {
-    updateSearch(val) {
-      this.enteredSearchTerm = val;
-    },
-    sort(mode) {
-      this.sorting = mode;
-    },
-  },
-  watch: {
-    enteredSearchTerm(val) {
-      setTimeout(() => {
-        if (val === this.enteredSearchTerm) {
-          this.activeSearchTerm = val;
-        }
-      }, 300);
-    },
+    });
+
+    function sort(mode) {
+      sorting.value = mode;
+    }
+
+    return {
+      enteredSearchTerm,
+      updateSearch,
+      displayedUsers,
+      sorting,
+      sort,
+    };
   },
 };
 </script>
