@@ -2,9 +2,11 @@
   <h2>My Course Goal</h2>
   <!-- Task 1: Output your main course goal with help of the composition API -->
   <!-- Don't hardcode it into the template, instead hardcode it into the JS code -->
-  <h3 v-show="isGoalVisible">{{ myGoal }}</h3>
+  <!-- <h3 v-show="isGoalVisible">{{ myGoal }}</h3> -->
+  <h3 v-show="myGoal.isGoalVisible">{{ myGoal.name }}</h3>
   <!-- Task 2: Toggle (show/ hide) the goal with help of the button  -->
-  <button @click="toogleGoal">Toggle Goal</button>
+  <!-- <button @click="toggleGoal">Toggle Goal</button> -->
+  <button @click="toggleGoal">Toggle Goal</button>
   <!-- Task 3: Manage data in three ways -->
   <!-- => Separate refs -->
   <!-- => Ref Object -->
@@ -13,24 +15,59 @@
 </template>
 
 <script>
+// => Separate refs
+// => Ref Object
 import { ref } from "vue";
+
+// => Reactive Object -->
+// import { reactive } from "vue";
+
 export default {
   data() {
     return {};
   },
   setup() {
-    const myGoal = ref("My Goals is understand Vue");
-    const isGoalVisible = ref(true);
+    // => Separate refs
+    // const myGoal = ref("My Goals is understand Vue");
+    // const isGoalVisible = ref(true);
+    // function toggleGoal() {
+    //   isGoalVisible.value = !isGoalVisible.value;
+    // }
+    // return {
+    //   myGoal,
+    //   isGoalVisible,
+    //   toggleGoal,
+    // };
 
-    function toogleGoal() {
-      isGoalVisible.value = !isGoalVisible.value;
+    // => Ref Object
+    const myGoal = ref({
+      name: "My Goals is understand Vue",
+      isGoalVisible: true,
+    });
+    // const isGoalVisible = ref(true);
+
+    function toggleGoal() {
+      myGoal.value.isGoalVisible = !myGoal.value.isGoalVisible;
     }
 
     return {
       myGoal,
-      isGoalVisible,
-      toogleGoal,
+      toggleGoal,
     };
+
+    // // => Reactive Object
+    // const myGoal = ref("My Goals is understand Vue");
+    // const isGoalVisible = ref(true);
+
+    // function toggleGoal() {
+    //   isGoalVisible.value = !isGoalVisible.value;
+    // }
+
+    // return {
+    //   myGoal,
+    //   isGoalVisible,
+    //   toggleGoal,
+    // };
   },
 };
 </script>
