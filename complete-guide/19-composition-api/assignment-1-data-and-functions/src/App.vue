@@ -6,6 +6,8 @@
   <h3 v-show="myGoal.isGoalVisible">{{ myGoal.name }}</h3>
   <!-- Task 2: Toggle (show/ hide) the goal with help of the button  -->
   <button @click="toggleGoal">Toggle Goal</button>
+  <h3 v-show="optionMyGoal.isGoalVisible">{{ optionMyGoal.name }}</h3>
+  <button @click="optionToggleGoal">Toggle Goal</button>
   <!-- Task 3: Manage data in three ways -->
   <!-- => Separate refs -->
   <!-- => Ref Object -->
@@ -22,9 +24,21 @@
 import { reactive } from "vue";
 
 export default {
+  // Options API
   data() {
-    return {};
+    return {
+      optionMyGoal: {
+        name: "My Goals is understand Vue",
+        isGoalVisible: true,
+      },
+    };
   },
+  methods: {
+    optionToggleGoal() {
+      this.optionMyGoal.isGoalVisible = !this.optionMyGoal.isGoalVisible;
+    },
+  },
+  // Composition API
   setup() {
     // => Separate refs
     // const myGoal = ref("My Goals is understand Vue");
@@ -37,6 +51,7 @@ export default {
     //   isGoalVisible,
     //   toggleGoal,
     // };
+
     // => Ref Object
     // const myGoal = ref({
     //   name: "My Goals is understand Vue",
@@ -56,7 +71,6 @@ export default {
       name: "My Goals is understand Vue",
       isGoalVisible: true,
     });
-
     function toggleGoal() {
       myGoal.isGoalVisible = !myGoal.isGoalVisible;
     }
