@@ -1,14 +1,37 @@
 <template>
   <section class="container">
     <h2>{{ userName }}</h2>
+    <input type="text" v-model="userName" />
   </section>
 </template>
 
 <script>
+import { ref } from "vue";
+
 export default {
-  data() {
+  // Options API
+  // data() {
+  //   return {
+  //     userName: "Maximilian",
+  //   };
+  // },
+
+  // Composition API
+  setup() {
+    // Non-reactive variable
+    // const uName = "Maximilian";
+
+    // Reactive variable
+    const uName = ref("Maximilian");
+
+    console.log(uName);
+
+    setTimeout(function () {
+      uName.value = "Max";
+    }, 2000);
+
     return {
-      userName: 'Maximilian',
+      userName: uName,
     };
   },
 };
