@@ -5,7 +5,6 @@
   <!-- <h3 v-show="isGoalVisible">{{ myGoal }}</h3> -->
   <h3 v-show="myGoal.isGoalVisible">{{ myGoal.name }}</h3>
   <!-- Task 2: Toggle (show/ hide) the goal with help of the button  -->
-  <!-- <button @click="toggleGoal">Toggle Goal</button> -->
   <button @click="toggleGoal">Toggle Goal</button>
   <!-- Task 3: Manage data in three ways -->
   <!-- => Separate refs -->
@@ -17,10 +16,10 @@
 <script>
 // => Separate refs
 // => Ref Object
-import { ref } from "vue";
+// import { ref } from "vue";
 
 // => Reactive Object -->
-// import { reactive } from "vue";
+import { reactive } from "vue";
 
 export default {
   data() {
@@ -38,36 +37,33 @@ export default {
     //   isGoalVisible,
     //   toggleGoal,
     // };
-
     // => Ref Object
-    const myGoal = ref({
+    // const myGoal = ref({
+    //   name: "My Goals is understand Vue",
+    //   isGoalVisible: true,
+    // });
+    // // const isGoalVisible = ref(true);
+    // function toggleGoal() {
+    //   myGoal.value.isGoalVisible = !myGoal.value.isGoalVisible;
+    // }
+    // return {
+    //   myGoal,
+    //   toggleGoal,
+    // };
+
+    // => Reactive Object
+    const myGoal = reactive({
       name: "My Goals is understand Vue",
       isGoalVisible: true,
     });
-    // const isGoalVisible = ref(true);
 
     function toggleGoal() {
-      myGoal.value.isGoalVisible = !myGoal.value.isGoalVisible;
+      myGoal.isGoalVisible = !myGoal.isGoalVisible;
     }
-
     return {
       myGoal,
       toggleGoal,
     };
-
-    // // => Reactive Object
-    // const myGoal = ref("My Goals is understand Vue");
-    // const isGoalVisible = ref(true);
-
-    // function toggleGoal() {
-    //   isGoalVisible.value = !isGoalVisible.value;
-    // }
-
-    // return {
-    //   myGoal,
-    //   isGoalVisible,
-    //   toggleGoal,
-    // };
   },
 };
 </script>
