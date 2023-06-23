@@ -7,64 +7,51 @@
     <input type="text" v-model="user.name" />
     <h3>{{ user.age }}</h3>
     <button @click="setAge">Change Age</button>
+    <div>
+      <input type="text" placeholder="First name" @input="setFirstName" />
+      <input type="text" placeholder="Last name" @input="setLastName" />
+    </div>
   </section>
 </template>
 
 <script>
-import { reactive } from "vue";
+import { ref, reactive, computed } from "vue";
 
 export default {
-  // Options API
-  // data() {
-  //   return {
-  //     userName: "Maximilian",
-  //   };
-  // },
-
   // Composition API
   setup() {
-    // Non-reactive variable
-    // const uName = "Maximilian";
-
-    // Reactive variable
-    // const uName = ref("Maximilian");
-    // const uAge = ref(32);
-
-    // Object with ref
-    // const user = ref({
-    //   name: "Maximilian",
-    //   age: 32,
-    // });
-
-    // console.log(user);
-
-    // setTimeout(function () {
-    // user.value.name = "Max";
-    // user.value.age = 33;
-    // }, 2000);
-
-    // Object with Reactive
+    const firstName = ref("");
+    const lastName = ref("");
     const user = reactive({
-      name: "Maximilian",
+      name: "",
       age: 32,
     });
-
-    console.log(user);
-
-    setTimeout(function () {
-      user.name = "Max";
-      user.age = 33;
-    }, 2000);
 
     function changeAge() {
       user.age += 1;
     }
 
+    function setFirstName(event) {
+      firstName.value = event.target.value;
+    }
+
+    function setLastName(event) {
+      lastName.value = event.target.value;
+    }
+
+    const userName = computed(function () {
+      return firstName.value + " " + lastName.value;
+    });
+
+    console.log(userName);
+
+    user.name = userName;
+
     return {
-      // userName: user.value.name,
-      // age: user.value.age,
       user: user,
       setAge: changeAge,
+      setFirstName,
+      setLastName,
     };
   },
 };
