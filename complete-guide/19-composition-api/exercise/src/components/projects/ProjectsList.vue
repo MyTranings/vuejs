@@ -22,56 +22,47 @@
 
 <script>
 import ProjectItem from "./ProjectItem.vue";
-import { ref, computed, watch } from "vue";
 
 export default {
   components: {
     ProjectItem,
   },
   props: ["user"],
-  setup(props) {
-    const enteredSearchTerm = ref("");
-    const activeSearchTerm = ref("");
-
-    const availableProjects = computed(() => {
-      const projects = props.user.projects;
-      if (activeSearchTerm.value) {
-        return projects.filter((prj) =>
-          prj.title.includes(activeSearchTerm.value)
+  data() {
+    return {
+      enteredSearchTerm: "",
+      activeSearchTerm: "",
+    };
+  },
+  computed: {
+    hasProjects() {
+      return this.user.projects && this.availableProjects.length > 0;
+    },
+    availableProjects() {
+      if (this.activeSearchTerm) {
+        return this.user.projects.filter((prj) =>
+          prj.title.includes(this.activeSearchTerm)
         );
       }
-      return projects;
-    });
-
-    const hasProjects = computed(
-      () => props.user.projects && availableProjects.value.length > 0
-    );
-
-    function updateSearch(val) {
-      enteredSearchTerm.value = val;
-    }
-
-    watch(enteredSearchTerm, (newVal) => {
+      return this.user.projects;
+    },
+  },
+  methods: {
+    updateSearch(val) {
+      this.enteredSearchTerm = val;
+    },
+  },
+  watch: {
+    enteredSearchTerm(val) {
       setTimeout(() => {
-        if (newVal === enteredSearchTerm.value) {
-          activeSearchTerm.value = newVal;
+        if (val === this.enteredSearchTerm) {
+          this.activeSearchTerm = val;
         }
       }, 300);
-    });
-
-    const fakeUser = ref(props.user);
-
-    watch(fakeUser, () => {
-      enteredSearchTerm.value = "";
-    });
-
-    return {
-      enteredSearchTerm,
-      activeSearchTerm,
-      availableProjects,
-      hasProjects,
-      updateSearch,
-    };
+    },
+    user() {
+      this.enteredSearchTerm = "";
+    },
   },
 };
 </script>
