@@ -19,26 +19,38 @@
   </section>
 </template>
 
-<script setup>
+<script>
 import { ref, computed, watch } from "vue";
 
-const availableFunds = 100;
-const currentExpenses = ref(0);
-const enteredExpense = ref(0);
+export default {
+  setup() {
+    const availableFunds = ref(100);
+    const currentExpenses = ref(0);
+    const enteredExpense = ref(0);
 
-const remainingFunds = computed(function () {
-  return availableFunds - currentExpenses.value;
-});
+    const remainingFunds = computed(function () {
+      return availableFunds.value - currentExpenses.value;
+    });
 
-function addExpense() {
-  currentExpenses.value += enteredExpense.value;
-}
+    function addExpense() {
+      currentExpenses.value += enteredExpense.value;
+    }
 
-watch(remainingFunds, function (newVal) {
-  if (newVal < 0) {
-    alert("You are broke!");
-  }
-});
+    watch(remainingFunds, function (newVal) {
+      if (newVal < 0) {
+        alert("You are broke!");
+      }
+    });
+
+    return {
+      availableFunds,
+      currentExpenses,
+      enteredExpense,
+      remainingFunds,
+      addExpense,
+    };
+  },
+};
 </script>
 
 <style>
