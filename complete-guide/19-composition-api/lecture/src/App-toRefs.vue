@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import { reactive } from "vue";
+import { reactive, toRefs } from "vue";
 
 export default {
   // Options API
@@ -55,10 +55,14 @@ export default {
       user.age = 33;
     }, 2000);
 
+    const userRefs = toRefs(user);
+
     return {
       // userName: user.value.name,
       // age: user.value.age,
-      user: user,
+      // user: user,
+      userName: userRefs.name,
+      age: userRefs.age,
     };
   },
 };
