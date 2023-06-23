@@ -1,12 +1,16 @@
 <template>
   <section class="container">
-    <h2>{{ userName }}</h2>
-    <input type="text" v-model="userName" />
+    <!-- <h2>{{ userName }}</h2> -->
+    <!-- <input type="text" v-model="userName" /> -->
+    <!-- <h3>{{ age }}</h3> -->
+    <h2>{{ user.name }}</h2>
+    <input type="text" v-model="user.name" />
+    <h3>{{ user.age }}</h3>
   </section>
 </template>
 
 <script>
-import { ref } from "vue";
+import { reactive } from "vue";
 
 export default {
   // Options API
@@ -22,16 +26,39 @@ export default {
     // const uName = "Maximilian";
 
     // Reactive variable
-    const uName = ref("Maximilian");
+    // const uName = ref("Maximilian");
+    // const uAge = ref(32);
 
-    console.log(uName);
+    // Object with ref
+    // const user = ref({
+    //   name: "Maximilian",
+    //   age: 32,
+    // });
+
+    // console.log(user);
+
+    // setTimeout(function () {
+    // user.value.name = "Max";
+    // user.value.age = 33;
+    // }, 2000);
+
+    // Object with Reactive
+    const user = reactive({
+      name: "Maximilian",
+      age: 32,
+    });
+
+    console.log(user);
 
     setTimeout(function () {
-      uName.value = "Max";
+      user.name = "Max";
+      user.age = 33;
     }, 2000);
 
     return {
-      userName: uName,
+      // userName: user.value.name,
+      // age: user.value.age,
+      user: user,
     };
   },
 };
