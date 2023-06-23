@@ -1,11 +1,12 @@
 <template>
   <section class="container">
-    <h2>{{ userName }}</h2>
+    <!-- <h2>{{ userName }}</h2>
     <input type="text" v-model="userName" />
-    <h3>{{ age }}</h3>
-    <!-- <h2>{{ user.name }}</h2> -->
-    <!-- <input type="text" v-model="user.name" /> -->
-    <!-- <h3>{{ user.age }}</h3> -->
+    <h3>{{ age }}</h3> -->
+    <h2>{{ user.name }}</h2>
+    <input type="text" v-model="user.name" />
+    <h3>{{ user.age }}</h3>
+    <button @click="setAge">Change Age</button>
   </section>
 </template>
 
@@ -55,10 +56,15 @@ export default {
       user.age = 33;
     }, 2000);
 
+    function changeAge() {
+      user.age += 1;
+    }
+
     return {
       // userName: user.value.name,
       // age: user.value.age,
       user: user,
+      setAge: changeAge,
     };
   },
 };
