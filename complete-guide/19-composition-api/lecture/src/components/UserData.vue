@@ -4,10 +4,10 @@
 </template>
 
 <script>
-import { computed } from "vue";
+import { computed, inject } from "vue";
 
 export default {
-  props: ["first-name", "last-name", "age"],
+  props: ["first-name", "last-name"],
   setup(props, context) {
     const uName = computed(function () {
       return props.firstName + " " + props.lastName;
@@ -20,8 +20,11 @@ export default {
     // Emit
     context.emit("save-data", 1); // this.$emit('save-data', 1)
 
+    const age = inject("userAge");
+
     return {
       userName: uName,
+      age,
     };
   },
   // computed: {

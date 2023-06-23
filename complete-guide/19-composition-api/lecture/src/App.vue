@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import { ref, reactive, computed, watch } from "vue";
+import { ref, reactive, computed, watch, provide } from "vue";
 import UserData from "./components/UserData.vue";
 
 export default {
@@ -39,6 +39,8 @@ export default {
     });
     const age = ref(32);
     const lastNameInput = ref(null);
+
+    provide("userAge", age);
 
     function changeAge() {
       user.age += 1;
