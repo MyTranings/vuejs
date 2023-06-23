@@ -8,8 +8,8 @@
     <h3>{{ user.age }}</h3>
     <button @click="setAge">Change Age</button>
     <div>
-      <input type="text" placeholder="First name" @input="setFirstName" />
-      <input type="text" placeholder="Last name" @input="setLastName" />
+      <input type="text" placeholder="First name" v-model="firstName" />
+      <input type="text" placeholder="Last name" v-model="lastName" />
     </div>
   </section>
 </template>
@@ -50,6 +50,8 @@ export default {
     return {
       user: user,
       setAge: changeAge,
+      firstName,
+      lastName,
       setFirstName,
       setLastName,
     };
