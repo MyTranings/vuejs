@@ -8,11 +8,11 @@ export default function useSearch(items, searchProp) {
     let filteredItems = [];
 
     if (activeSearchTerm.value) {
-      filteredItems = items.filter((item) =>
+      filteredItems = items.value.filter((item) =>
         item[searchProp].includes(activeSearchTerm.value)
       );
     } else if (items) {
-      filteredItems = items;
+      filteredItems = items.value;
     }
     return filteredItems;
   });
