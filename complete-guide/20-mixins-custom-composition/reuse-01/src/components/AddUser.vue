@@ -9,24 +9,9 @@
 </template>
 
 <script>
-import UserAlert from './UserAlert.vue';
+import alertMixin from "../mixins/alert-with-component.js";
 
 export default {
-  components: {
-    UserAlert,
-  },
-  data() {
-    return {
-      alertIsVisible: false,
-    };
-  },
-  methods: {
-    showAlert() {
-      this.alertIsVisible = true;
-    },
-    hideAlert() {
-      this.alertIsVisible = false;
-    },
-  },
+  mixins: [alertMixin],
 };
 </script>
