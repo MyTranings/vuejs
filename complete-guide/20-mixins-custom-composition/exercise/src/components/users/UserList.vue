@@ -95,7 +95,10 @@ export default {
     //   sorting.value = mode;
     // }
 
-    const { displayedUsers, sorting, sort } = useSort(availableItems);
+    const { displayedUsers, sorting, sort } = useSort(
+      availableItems,
+      "fullName"
+    );
 
     return {
       enteredSearchTerm,
